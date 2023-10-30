@@ -1,0 +1,20 @@
+# This is a playbook for changing the BindIP of your DB
+
+---
+
+# Agent node name/IP
+- hosts: db
+
+# gather facts
+  gather_facts: yes
+
+# provide admin access
+  become: true
+
+# provide instructions
+  tasks:
+  - name: Update BindIP in the mongodb.conf file
+    replace:
+      path: /etc/mongodb.conf
+      regexp: 'bind_ip = 127.0.0.1'
+      replace: 'bind_ip = 0.0.0.0'

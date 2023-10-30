@@ -1,0 +1,49 @@
+# Playbook for provisioning NodeJs (ver12.x)
+
+# Yaml file starts with ---
+---
+
+# where do you want to install or run this playbook
+- hosts: web
+
+# find the facts (show logs) - optional
+  gather_facts: yes
+
+# provide admin access to playbook - use sudo
+  become: true
+
+# provide the actual instructions - install nodejs
+  tasks:
+    - name: Install the NodeSource Node.js 12.x release PPA
+      shell: "curl -sL https://deb.nodesource.com/setup_12.x | bash -"
+ 
+    - name: Install Node.js
+      apt:
+        name: nodejs
+        state: present
+ 
+    - name: Check Node.js version
+      shell: "node -v"
+      register: node_version
+ 
+    - name: Display Node.js version
+      debug:
+        msg: "Node.js version is {{ node_version.stdout }}"
+ 
+    - name: Check NPM version
+      shell: "npm -v"
+      register: npm_version
+ 
+    - name: Display NPM version
+      debug:
+        msg: "NPM version is {{ npm_version.stdout }}"
+
+    - name: install NPM
+         shell: npm i
+         args:
+           chdir: /home/ubuntu
+
+    - name: Install PM2
+      npm:
+        name: pm2
+        global: yes
