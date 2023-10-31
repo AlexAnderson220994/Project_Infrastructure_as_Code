@@ -267,6 +267,7 @@ sudo nano hosts
 ````
 ec2-instance ansible_host=3.250.69.186 ansible_user=ubuntu ansible_ssh_private_key_file=/home/ubuntu/.ssh/tech254.pem
 ````
+![Alt text](<images/5. hosts file.jpg>)
 10) Each element in the above is now defined.
 11) Do the command:
 ````
@@ -274,4 +275,42 @@ sudo ansible web -m ping
 ````
 12) Should come back with a successful ping if the link is there.
 
+![Alt text](<images/6. pinging virtual machines.jpg>)
 
+### Creating Playbooks
+
+1) Creating and editing the Install-nginx Playbook:
+- needs to be in the default location: /etc/ansible
+````
+sudo nano install-nginx.yaml 
+````
+
+2) Add the following commands:
+````
+# Creating a Playbook to provision nginx Web Server in the web-node
+
+---
+# Yaml file starts with 3 dashes
+
+# Where do you want to install or run this playbook
+- hosts: web
+
+# find the facts - see the logs (optional)
+  gather_facts: yes
+
+# provide admin access to this playbook (telling it to use sudo)
+  become: true
+
+# provide the actual instructions - install nginx
+  tasks:
+  - name: provision/install/configure Nginx
+    apt: pkg=nginx state=present
+# ensuring nginx is running/enabled
+````
+3) To run the playbook, use the command:
+````
+sudo ansible-playbook install-nginx.yml
+````
+4) Once all playbooks are run, the Sparta Test App and Posts page should be visible
+![Alt text](<images/8. sparta app.jpg>)
+![Alt text](<images/9. posts.jpg>)
