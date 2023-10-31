@@ -83,6 +83,78 @@
 - Cloud engineers leverage Terraform to create, modify, and manage resources on cloud platforms like AWS, Azure, Google Cloud, and others. Terraform simplifies the process of building and scaling cloud-based infrastructure.
 - DevOps professionals use Terraform to automate the provisioning and management of infrastructure, ensuring that development and operations are closely aligned and enabling continuous integration and delivery (CI/CD) pipelines.
 
+## Using Terraform
+
+### Setting up Terraform
+
+#### Download
+
+1) Go onto your internet browser and type in "Terraform install"
+2) Choose the latest version of Terraform compatible with your system OS (Windows 10 or 11).
+3) Download the file.
+4) Extract the file to somewhere in your C: drive (windows folder) and make a folder called Terraform to extract it to.
+5) Open Gitbash and do the following commands:
+````
+terraform
+````
+````
+terraform --version
+````
+6) This will confirm that terraform has been installed and you have the correct version.
+
+#### Add AWS access and secret keys as USER variables on your system
+
+1) On your computer:
+- Go to "settings"
+- Go to "advanced settings"
+- Under advanced, go to "Environment Variables"
+- Under User Variables, Select new.
+- Make one new user variable for Access key ID with the key value. Give the Variable name as `AWS_ACCESS_KEY_ID`
+- Make another user variable with the secret key and the key value. Give the variable name as `AWS_SECRET_ACCESS_KEY`
+- **NOTE** - NEVER share your AWS access and secret keys on any repository or over video/screenshare.
+2) Make sure to open a new Bash console everytime you change variables so it can register the change.
+
+### Using Terraform to create Instances
+
+1) Make a folder on your c: drive to house your terraform project (e.g. `tech254-terraform`)
+2) cd into this folder
+3) Make a new terraform file within this folder. e.g. `main.tf`
+````
+nano main.tf
+````
+4) The `file.tf` needs certain information to run in JSON format.
+- The Cloud Provider (AWS, Azure, GCP)
+- The region (e.g. eu-west-1)
+- The dependencies for EC2 instance creation (resource type, ami, instane_type, tags)
+- The number of spaces used within the file doensn't matter but make sure they are there when needed.
+- Make sure to include "" where needed.
+
+#### Terraform commands
+
+1) Make sure you're in the folder with the `main.tf` file.
+2) Run these commands:
+- terraform init - Prepare your working directory for other commands
+````
+terraform init
+````
+- terraform validate - Check whether the configuration is valid
+````
+terraform validate
+````
+- terraform plan - Show changes required by the current configuration
+````
+terraform plan
+````
+- terraform apply - Create or update infrastructure
+````
+terraform apply
+````
+- terraform destroy - Destroy previously-created infrastructure (destroys the instance you've made)
+````
+terraform destroy
+````
+3) The command `terraform` shows that Terraform exists on your system and shows other commands that can be used.
+
 ## Using Ansible
 
 ### Step 1 - Make an EC2 Instance on AWS
@@ -202,74 +274,4 @@ sudo ansible web -m ping
 ````
 12) Should come back with a successful ping if the link is there.
 
-## Using Terraform
 
-### Setting up Terraform
-
-#### Download
-
-1) Go onto your internet browser and type in "Terraform install"
-2) Choose the latest version of Terraform compatible with your system OS (Windows 10 or 11).
-3) Download the file.
-4) Extract the file to somewhere in your C: drive (windows folder) and make a folder called Terraform to extract it to.
-5) Open Gitbash and do the following commands:
-````
-terraform
-````
-````
-terraform --version
-````
-6) This will confirm that terraform has been installed and you have the correct version.
-
-#### Add AWS access and secret keys as USER variables on your system
-
-1) On your computer:
-- Go to "settings"
-- Go to "advanced settings"
-- Under advanced, go to "Environment Variables"
-- Under User Variables, Select new.
-- Make one new user variable for Access key ID with the key value. Give the Variable name as `AWS_ACCESS_KEY_ID`
-- Make another user variable with the secret key and the key value. Give the variable name as `AWS_SECRET_ACCESS_KEY`
-- **NOTE** - NEVER share your AWS access and secret keys on any repository or over video/screenshare.
-2) Make sure to open a new Bash console everytime you change variables so it can register the change.
-
-### Using Terraform to create Instances
-
-1) Make a folder on your c: drive to house your terraform project (e.g. `tech254-terraform`)
-2) cd into this folder
-3) Make a new terraform file within this folder. e.g. `main.tf`
-````
-nano main.tf
-````
-4) The `file.tf` needs certain information to run in JSON format.
-- The Cloud Provider (AWS, Azure, GCP)
-- The region (e.g. eu-west-1)
-- The dependencies for EC2 instance creation (resource type, ami, instane_type, tags)
-- The number of spaces used within the file doensn't matter but make sure they are there when needed.
-- Make sure to include "" where needed.
-
-#### Terraform commands
-
-1) Make sure you're in the folder with the `main.tf` file.
-2) Run these commands:
-- terraform init - Prepare your working directory for other commands
-````
-terraform init
-````
-- terraform validate - Check whether the configuration is valid
-````
-terraform validate
-````
-- terraform plan - Show changes required by the current configuration
-````
-terraform plan
-````
-- terraform apply - Create or update infrastructure
-````
-terraform apply
-````
-- terraform destroy - Destroy previously-created infrastructure (destroys the instance you've made)
-````
-terraform destroy
-````
-3) The command `terraform` shows that Terraform exists on your system and shows other commands that can be used.
