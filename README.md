@@ -85,6 +85,16 @@
 
 ## Using Terraform
 
+### Test App
+
+#### Front Page
+
+![Alt text](<images/8. sparta app.jpg>)
+
+#### Posts Page
+
+![Alt text](<images/9. posts.jpg>)
+
 ### Setting up Terraform
 
 #### Download
@@ -314,5 +324,3 @@ sudo nano install-nginx.yaml
 sudo ansible-playbook install-nginx.yml
 ````
 4) Once all playbooks are run, the Sparta Test App and Posts page should be visible
-![Alt text](<images/8. sparta app.jpg>)
-![Alt text](<images/9. posts.jpg>)
