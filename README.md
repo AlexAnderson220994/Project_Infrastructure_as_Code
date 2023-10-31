@@ -131,6 +131,8 @@ nano main.tf
 
 #### Terraform commands
 
+![Alt text](<images/10. terraform commands.jpg>)
+
 1) Make sure you're in the folder with the `main.tf` file.
 2) Run these commands:
 - terraform init - Prepare your working directory for other commands
